@@ -1,0 +1,43 @@
+{
+  "name": "astro-noemail",
+  "version": "0.1.0",
+  "description": "Prevents email address harvesting by obfuscating emails in generated Astro HTML at build time",
+  "homepage": "https://velohost.co.uk/plugins/astro-noemail/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velohost/astro-noemail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/velohost/astro-noemail/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "withastro",
+    "astro-integration",
+    "security",
+    "email",
+    "spam",
+    "scraping",
+    "static-site"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "^5.0.0"
+  }
+}
