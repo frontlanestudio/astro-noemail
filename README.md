@@ -170,7 +170,9 @@ The plugin must never block a deployment.
 
 ## License
 
-MIT
+MIT License
+
+Copyright (c) 2026 Velohost UK Limited
 
 ---
 
