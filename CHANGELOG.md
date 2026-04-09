@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 - 2026-04-09
+
+### Changed
+
+- Added SSR response rewriting for on-demand Astro pages via middleware.
+- Exported the public `NoEmailOptions` type from the package entrypoint.
+- Documented support across static, hybrid, full SSR, and client-only rendering modes.
+
 ## 0.1.1 - 2026-04-01
 
 ### Changed

@@ -1,8 +1,8 @@
 # astro-noemail
 
-**Build-time email address obfuscation for Astro**
+**Build-time and SSR email address obfuscation for Astro**
 
-`astro-noemail` is a tiny, static-first Astro integration that protects email addresses from basic scrapers by converting them into HTML entities **at build time**.
+`astro-noemail` is a tiny Astro integration that protects email addresses from basic scrapers by converting them into HTML entities during build and for on-demand SSR responses.
 
 There is:
 - no JavaScript at runtime
@@ -28,7 +28,24 @@ These approaches:
 - break with JS disabled
 - add unnecessary complexity
 
-`astro-noemail` solves this once, **during the build**, and produces static, cache-safe output.
+`astro-noemail` solves this during rendering and build output, and produces cache-safe output.
+
+## Supported rendering modes
+
+This plugin works across:
+
+- static/prerendered pages
+- hybrid sites with both prerendered and on-demand SSR routes
+- full SSR sites
+
+For client-only rendering, the plugin can only obfuscate email addresses that appear in the HTML Astro sends from the server. Content created later in the browser by client-side JavaScript is outside its scope.
+
+| Mode | Supported | Notes |
+| --- | --- | --- |
+| Static / prerendered | Yes | Obfuscates generated `.html` files during build |
+| Hybrid | Yes | Obfuscates prerendered pages and SSR responses |
+| Full SSR | Yes | Obfuscates HTML responses through Astro middleware |
+| Client-only rendering | Partial | Only server-rendered HTML is processed; browser-created content is not |
 
 ---
 
@@ -37,6 +54,7 @@ These approaches:
 On `astro build`, the plugin:
 
 - scans generated `.html` files in the output directory
+- rewrites HTML responses for SSR pages through Astro middleware
 - finds plain-text email addresses
 - replaces them with numeric HTML entities
 
@@ -60,15 +78,14 @@ Browsers render this normally, but basic scrapers do not.
 
 This plugin deliberately does **not**:
 
-- run at runtime
-- inject JavaScript
+- inject JavaScript into the browser
 - parse the DOM
 - modify Astro source files
 - touch files outside the build output
 - expose environment variables
 - interfere with adapters or rendering
 
-It operates **only** on final HTML output.
+It operates only on HTML responses, not on client-side JavaScript.
 
 ---
 
@@ -112,6 +129,8 @@ That’s it.
 
 No configuration is required.
 
+The public TypeScript types are exported from the main entrypoint, including `NoEmailOptions`.
+
 ---
 
 ## Optional configuration
@@ -125,6 +144,16 @@ astroNoEmail({
 ```
 
 This can be useful for local testing or special builds.
+
+### Disable SSR rewriting
+
+```js
+astroNoEmail({
+  ssr: false
+})
+```
+
+This keeps the build-time HTML rewrite on, but skips middleware rewriting for on-demand SSR responses.
 
 ---
 

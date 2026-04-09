@@ -1,7 +1,7 @@
 {
   "name": "astro-noemail",
-  "version": "0.1.1",
-  "description": "Prevents email address harvesting by obfuscating emails in generated Astro HTML at build time",
+  "version": "1.0.0",
+  "description": "Prevents email address harvesting by obfuscating emails in generated Astro HTML and SSR responses",
   "homepage": "https://velohost.co.uk/plugins/astro-noemail/",
   "author": "Velohost UK Limited",
   "repository": {
